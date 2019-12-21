@@ -20,6 +20,11 @@ end
 always #1 clk = ~clk;
 
 always @(posedge clk) begin
+    if (b == max_num && a == max_num)
+        $stop;
+end
+
+always @(posedge clk) begin
     if (a == max_num)
         b = b + 1;
     else
@@ -28,11 +33,6 @@ end
 
 always @(posedge clk) begin
     a = a + 1;
-end
-
-always @(posedge clk) begin
-    if (b == max_num && a == max_num)
-        $stop;
 end
 
 ripply_carry_adder #(
