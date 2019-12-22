@@ -1,4 +1,4 @@
-module ripply_carry_adder #(
+module anticipated_carry_adder #(
     parameter width = 4
 )(
     input  wire [width-1 : 0] a,
@@ -8,8 +8,13 @@ module ripply_carry_adder #(
                               cout
 );
 
-wire [width : 0] c;
+wire [width-1 : 0] g, p;
+wire [width   : 0] c;
+
+assign g = a & b;
+assign p = a ^ b;
 assign c[0] = cin;
+assign c[width : 1] = g[width-1 : 0] | (p[width-1 : 0] & c[width-1 : 0]);
 assign cout = c[width];
 
 genvar i;
@@ -20,9 +25,9 @@ generate
             .b(b[i]),
             .cin(c[i]),
             .sum(sum[i]),
-            .cout(c[i+1])
+            .cout()
         );
     end
 endgenerate
 
-endmodule // ripply_carry_adder
+endmodule // anticipated_carry_adder
