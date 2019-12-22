@@ -7,8 +7,8 @@ localparam [width-1 : 0] max_num = (1 << width) - 1;
 
 reg clk;
 reg [width-1 : 0] a, b;
-wire [width-1 : 0] rc_sum, ac_sum;
-wire rc_cout, ac_cout;
+wire [width-1 : 0] rc_sum, ac_sum, pt_sum;
+wire rc_cout, ac_cout, pt_cout;
 
 initial begin
     clk = 1'b0;
@@ -32,7 +32,7 @@ end
 always @(posedge clk) begin
     if (b == max_num && a == max_num)
         $stop;
-    if ((rc_sum != ac_sum) || (rc_cout != ac_cout))
+    if ((rc_sum != ac_sum) || (rc_cout != ac_cout) || (rc_sum != pt_sum) || (rc_cout != pt_cout))
         $display("a = ", a, " b = ", b, " error occor!");
 end
 
@@ -54,6 +54,16 @@ anticipated_carry_adder #(
     .cin(1'b0),
     .sum(ac_sum),
     .cout(ac_cout)
+);
+
+prefix_tree_adder #(
+    .width(width)
+) pt_adder (
+    .a(a),
+    .b(b),
+    .cin(1'b0),
+    .sum(pt_sum),
+    .cout(pt_cout)
 );
 
 endmodule // adder_test
