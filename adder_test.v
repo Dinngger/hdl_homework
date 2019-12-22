@@ -2,7 +2,7 @@
 
 module adder_test;
 
-localparam width = 8;
+localparam width = 4;
 localparam [width-1 : 0] max_num = (1 << width) - 1;
 
 reg clk;

@@ -17,7 +17,7 @@ function integer clogb2 (
     end
 endfunction
 
-localparam depth = clogb2(width);
+localparam depth = clogb2(width+1);
 
 reg [width : 0] g [0 : depth],
                 p [0 : depth];
@@ -34,7 +34,7 @@ always @(*) begin : prefix_tree
         for (j = 0; j < width+1; j = j+1) begin
             src = j - (j & ((1 << (i-1)) - 1)) - 1;
             if ((j >> (i-1)) & 1 == 1) begin
-                g[i][j] = g[i-1][j] | (g[i-1][src] & p[i][j]);
+                g[i][j] = g[i-1][j] | (g[i-1][src] & p[i-1][j]);
                 p[i][j] = p[i-1][j] & p[i-1][src];
             end else begin
                 g[i][j] = g[i-1][j];
