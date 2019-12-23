@@ -17,7 +17,7 @@ assign p = a ^ b;
 assign g = a & b;
 assign p_all = &p;
 assign g_all[0] = g[0];
-assign g_all[block_width-1 : 1] = (p[block_width-1 : 1] & g_all[block_width-2 : 0]) | g[block_width-1 : 0];
+assign g_all[block_width-1 : 1] = (p[block_width-1 : 1] & g_all[block_width-2 : 0]) | g[block_width-1 : 1];
 assign cout = (cin & p_all) | g_all[block_width-1];
 
 genvar i;
@@ -50,6 +50,7 @@ module anticipated_carry_adder #(
 localparam block_num = width / block_width;
 wire [block_num : 0] c;
 assign c[0] = cin;
+assign cout = c[block_num];
 
 genvar i;
 generate
