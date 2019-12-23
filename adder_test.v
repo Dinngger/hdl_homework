@@ -33,7 +33,7 @@ always @(posedge clk) begin
     if (b == max_num && a == max_num)
         $stop;
     if ((rc_sum != ac_sum) || (rc_cout != ac_cout) || (rc_sum != pt_sum) || (rc_cout != pt_cout))
-        $display("a = ", a, " b = ", b, " error occor!");
+        $display("a = ", a, " b = ", b, " error occour!");
 end
 
 ripply_carry_adder #(
