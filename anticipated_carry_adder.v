@@ -1,11 +1,11 @@
 module adder_block #(
     parameter block_width = 4
 )(
-    input wire [block_width-1 : 0] a,
-               [block_width-1 : 0] b,
-                                   cin,
+    input  wire [block_width-1 : 0] a,
+                                    b,
+           wire                     cin,
     output wire [block_width-1 : 0] sum,
-                                    cout
+           wire                     cout
 );
 
 wire [block_width : 0] c;
@@ -41,10 +41,10 @@ module anticipated_carry_adder #(
     parameter width = 32
 )(
     input  wire [width-1 : 0] a,
-                [width-1 : 0] b,
-                              cin,
+                              b,
+           wire               cin,
     output wire [width-1 : 0] sum,
-                              cout
+           wire               cout
 );
 
 localparam block_num = width / block_width;

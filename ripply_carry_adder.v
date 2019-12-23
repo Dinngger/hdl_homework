@@ -2,10 +2,10 @@ module ripply_carry_adder #(
     parameter width = 4
 )(
     input  wire [width-1 : 0] a,
-                [width-1 : 0] b,
-                              cin,
+                              b,
+           wire               cin,
     output wire [width-1 : 0] sum,
-                              cout
+           wire               cout
 );
 
 wire [width : 0] c;

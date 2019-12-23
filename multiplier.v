@@ -2,7 +2,7 @@ module multiplier #(
     parameter width = 4
 )(
     input  wire [width-1 : 0] a,
-                [width-1 : 0] b,
+                              b,
     output wire [2*width-1 : 0] res
 );
 
