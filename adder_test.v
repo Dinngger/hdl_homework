@@ -2,7 +2,7 @@
 
 module adder_test;
 
-localparam width = 4;
+localparam width = 8;
 localparam [width-1 : 0] max_num = (1 << width) - 1;
 
 reg clk;
@@ -47,6 +47,7 @@ ripply_carry_adder #(
 );
 
 anticipated_carry_adder #(
+    .block_width(4),
     .width(width)
 ) ac_adder (
     .a(a),
